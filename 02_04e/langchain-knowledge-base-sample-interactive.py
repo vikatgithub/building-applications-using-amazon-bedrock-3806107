@@ -1,11 +1,13 @@
 #Imports
+import os
 from langchain.chains import RetrievalQA
 from langchain_community.llms import Bedrock
 from langchain_community.retrievers import AmazonKnowledgeBasesRetriever
 
 #Define the retriever
+print(os.getenv('AWS_BEDROCK_KB_ID'))
 retriever = AmazonKnowledgeBasesRetriever(
-  knowledge_base_id= "",
+  knowledge_base_id= os.getenv('AWS_BEDROCK_KB_ID'),
   retrieval_config= {"vectorSearchConfiguration" : {"numberOfResults": 4}}
 )
 
